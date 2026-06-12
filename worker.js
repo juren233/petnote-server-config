@@ -4,7 +4,7 @@
  * 功能：为 PetNote App 提供官方服务器地址的动态配置
  *
  * 更新服务器地址步骤：
- * 1. 修改 wrangler.toml 中的 OFFICIAL_SERVER_URL
+ * 1. 修改 wrangler.toml 中的 OFFICIAL_SERVER_DOMAIN 或 OFFICIAL_SERVER_URL
  * 2. git commit && git push
  * 3. GitHub Actions 自动部署（约 30 秒）
  * 4. 全球 CDN 缓存刷新（1-5 分钟）
@@ -41,9 +41,14 @@ export default {
       );
     }
 
+    const serverDomain = env.OFFICIAL_SERVER_DOMAIN || 'petnote.juren233.top';
+    const serverUrl =
+      env.OFFICIAL_SERVER_URL || `wss://${serverDomain.replace(/^\/+|\/+$/g, '')}/ws`;
+
     // 构建配置响应
     const config = {
-      server_url: env.OFFICIAL_SERVER_URL || 'wss://petnote.juren233.top/ws',
+      server_domain: serverDomain,
+      server_url: serverUrl,
       updated_at: new Date().toISOString(),
       version: '1.0.0',
     };

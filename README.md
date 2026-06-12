@@ -10,7 +10,7 @@
 
 1. 打开 [wrangler.toml](./wrangler.toml)
 2. 点击右上角 ✏️ 编辑按钮
-3. 修改 `OFFICIAL_SERVER_URL` 的值
+3. 修改 `OFFICIAL_SERVER_DOMAIN` 或 `OFFICIAL_SERVER_URL` 的值
 4. 点击 "Commit changes"
 5. Cloudflare 自动部署（约 10-30 秒）
 
@@ -23,7 +23,8 @@ cd petnote-server-config
 
 # 2. 修改配置
 vim wrangler.toml
-# 编辑 OFFICIAL_SERVER_URL = "wss://新域名/ws"
+# 编辑 OFFICIAL_SERVER_DOMAIN = "新域名"
+# 或编辑 OFFICIAL_SERVER_URL = "wss://新域名/ws"
 
 # 3. 提交并推送
 git add wrangler.toml
@@ -49,6 +50,7 @@ git push
    - **Build command**: (留空)
    - **Build output directory**: `/`
 7. 环境变量（可选，或在部署后添加）：
+   - `OFFICIAL_SERVER_DOMAIN`: `petnote.juren233.top`
    - `OFFICIAL_SERVER_URL`: `wss://petnote.juren233.top/ws`
 8. 点击 "Save and Deploy"
 
@@ -74,9 +76,12 @@ git push
 ```bash
 # 获取当前配置
 curl https://你的worker域名.workers.dev/server
+# 绑定自定义域后：
+curl https://petnote-server.juren233.top/server
 
 # 预期返回
 {
+  "server_domain": "petnote.juren233.top",
   "server_url": "wss://petnote.juren233.top/ws",
   "updated_at": "2026-06-12T12:00:00.000Z",
   "version": "1.0.0"

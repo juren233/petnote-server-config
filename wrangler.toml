@@ -7,10 +7,11 @@ account_id = "c237b2d42470636339faa8103380f0ed"
 # 国内访问延迟通常 < 50ms
 
 [vars]
+OFFICIAL_SERVER_DOMAIN = "petnote.juren233.top"
 OFFICIAL_SERVER_URL = "wss://petnote.juren233.top/ws"
 
 # 更新服务器地址流程：
-# 1. 修改上面的 OFFICIAL_SERVER_URL 值
+# 1. 修改上面的 OFFICIAL_SERVER_DOMAIN 或 OFFICIAL_SERVER_URL 值
 # 2. git add wrangler.toml
 # 3. git commit -m "更新官方服务器地址"
 # 4. git push
